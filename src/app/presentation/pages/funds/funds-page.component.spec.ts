@@ -7,8 +7,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { InvestmentFund } from '../../../domain/models';
 import { describe, it, expect, vi } from 'vitest';
 import { NotificationService } from '../../../core/services/notification.service';
-import { EmailNotificationService } from '../../../core/services/email-notification.service';
-import { SmsNotificationService } from '../../../core/services/sms-notification.service';
 
 describe.skip('FundsPageComponent', () => {
   const renderComponent = async () => {
@@ -20,14 +18,6 @@ describe.skip('FundsPageComponent', () => {
         {
           provide: NotificationService,
           useValue: { showNotification: vi.fn() }
-        },
-        {
-          provide: EmailNotificationService,
-          useValue: { sendEmail: vi.fn().mockResolvedValue({ success: true }) }
-        },
-        {
-          provide: SmsNotificationService,
-          useValue: { sendSms: vi.fn().mockResolvedValue({ success: true }) }
         }
       ]
     });

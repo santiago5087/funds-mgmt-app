@@ -17,7 +17,7 @@ describe('SpinnerComponent', () => {
   it('should be visible in the DOM', async () => {
     const { container } = await render(SpinnerComponent);
     const spinner = container.querySelector('mat-spinner');
-    expect(spinner).toBeInTheDocument();
+    expect(spinner).toBeTruthy();
   });
 
   it('should render inside a container', async () => {
