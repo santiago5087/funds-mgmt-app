@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ButtonComponent, ButtonVariant } from '../../atoms/button/button.component';
+import { ButtonComponent, ButtonVariant } from '../../atoms';
 
 export type ActionCardVariant = 'primary' | 'accent' | 'history';
 
