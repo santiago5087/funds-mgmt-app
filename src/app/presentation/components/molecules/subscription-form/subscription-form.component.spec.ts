@@ -415,6 +415,36 @@ describe('SubscriptionFormComponent', () => {
     });
   });
 
+  describe('amount formatting', () => {
+    it('should parse formatted currency input into numeric value', async () => {
+      const { fixture } = await render(SubscriptionFormComponent, {
+        componentInputs: defaultProps
+      });
+
+      const event = {
+        target: { value: '$ 120.000' }
+      } as any;
+
+      fixture.componentInstance.parseAmount(event);
+
+      expect(fixture.componentInstance.subscriptionForm.controls.amount.value).toBe(120000);
+    });
+
+    it('should format amount input as es-CO currency on blur', async () => {
+      const { fixture, container } = await render(SubscriptionFormComponent, {
+        componentInputs: defaultProps
+      });
+
+      const amountInput = container.querySelector('[formControlName="amount"]') as HTMLInputElement;
+      fixture.componentInstance.subscriptionForm.controls.amount.setValue(120000);
+
+      fixture.componentInstance.formatAmount();
+      fixture.detectChanges();
+
+      expect(amountInput.value).toContain('120');
+    });
+  });
+
   describe('onCancel output', () => {
     it('should emit onCancel when cancel is triggered', async () => {
       let cancelCalled = false;

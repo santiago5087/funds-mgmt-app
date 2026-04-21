@@ -5,14 +5,14 @@
     <div class="form-field">
       <label class="field-label">Monto a invertir</label>
       <input 
-        type="number" 
+        type="text" 
         formControlName="amount"
         class="form-input"
         [class.invalid]="amountError()"
         [min]="minimumAmount()"
         placeholder="Ingrese el monto"
-        (blur)="markAmountTouched()"
-        (input)="subscriptionForm.controls.amount.markAsDirty()"
+        (blur)="markAmountTouched(); formatAmount()"
+        (input)="parseAmount($event); subscriptionForm.controls.amount.markAsDirty()"
       />
       <span class="helper-text">Monto mínimo: ${{ minimumAmount().toLocaleString('es-CO') }}</span>
       @if (amountError()) {

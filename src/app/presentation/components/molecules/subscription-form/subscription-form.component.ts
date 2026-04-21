@@ -1,5 +1,5 @@
 import { Component, input, output, signal, computed, effect } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -231,6 +231,39 @@ export class SubscriptionFormComponent {
   markPhoneTouched() {
     this.phoneTouched.set(true);
     this.subscriptionForm.controls.phone.markAsTouched();
+  }
+
+  // Formatear el monto a moneda es-CO
+  formatAmount() {
+    const control = this.subscriptionForm.controls.amount;
+    const value = control.value;
+    
+    if (value && !isNaN(value) && value > 0) {
+      const formatted = new Intl.NumberFormat('es-CO', {
+        style: 'currency',
+        currency: 'COP',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(value);
+      
+      // Actualizar el display del input sin cambiar el valor del control
+      const input = document.querySelector('[formControlName="amount"]') as HTMLInputElement;
+      if (input) {
+        input.value = formatted;
+      }
+    }
+  }
+
+  // Parsear el monto formateado de vuelta a número
+  parseAmount(event: any) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+    
+    // Remover caracteres no numéricos (moneda, separadores, etc)
+    const numericValue = parseInt(value.replace(/\D/g, ''), 10) || 0;
+    
+    // Actualizar el control con el valor numérico
+    this.subscriptionForm.controls.amount.setValue(numericValue, { emitEvent: false });
   }
 
   handleSubmit() {

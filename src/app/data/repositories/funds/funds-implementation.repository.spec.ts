@@ -13,14 +13,14 @@ describe('FundsImplementationRepository', () => {
   const mockFunds: InvestmentFund[] = [
     {
       id: '1',
-      name: 'FPV_XYZ_PACTUAL_RECAUDADORA',
+      name: 'FPV_XYZ_RECAUDADORA',
       description: 'Fondo de pensión voluntaria',
       minimumAmount: 75000,
       category: 'FPV'
     },
     {
       id: '2',
-      name: 'FPV_XYZ_PACTUAL_ECOPETROL',
+      name: 'FPV_XYZ_ECOPETROL',
       description: 'Fondo pensional Ecopetrol',
       minimumAmount: 125000,
       category: 'FPV'
