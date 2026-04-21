@@ -1,0 +1,89 @@
+<form [formGroup]="subscriptionForm" (ngSubmit)="handleSubmit()" class="subscription-form">
+  <h2 mat-dialog-title>{{ fundName() }}</h2>
+  
+  <div class="form-content">
+    <div class="form-field">
+      <label class="field-label">Monto a invertir</label>
+      <input 
+        type="number" 
+        formControlName="amount"
+        class="form-input"
+        [class.invalid]="amountError()"
+        [min]="minimumAmount()"
+        placeholder="Ingrese el monto"
+        (blur)="markAmountTouched()"
+        (input)="subscriptionForm.controls.amount.markAsDirty()"
+      />
+      <span class="helper-text">Monto mínimo: ${{ minimumAmount().toLocaleString('es-CO') }}</span>
+      @if (amountError()) {
+        <span class="error-text">{{ amountError() }}</span>
+      }
+    </div>
+
+    <div class="notification-field">
+      <label class="field-label">Método de notificación</label>
+      <mat-radio-group formControlName="notificationMethod" class="radio-group">
+        <mat-radio-button value="email">Email</mat-radio-button>
+        <mat-radio-button value="sms">SMS</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    @if (selectedNotificationMethod() === 'email') {
+      <div class="form-field">
+        <label class="field-label">Correo electrónico</label>
+        <input 
+          type="email" 
+          formControlName="email"
+          class="form-input"
+          [class.invalid]="emailError()"
+          placeholder="ejemplo@correo.com"
+          (blur)="markEmailTouched()"
+          (input)="subscriptionForm.controls.email.markAsDirty()"
+        />
+        <span class="helper-text">Ingrese su correo electrónico para recibir notificaciones</span>
+        @if (emailError()) {
+          <span class="error-text">{{ emailError() }}</span>
+        }
+      </div>
+    }
+
+    @if (selectedNotificationMethod() === 'sms') {
+      <div class="form-field">
+        <label class="field-label">Número de teléfono</label>
+        <input 
+          type="tel" 
+          formControlName="phone"
+          class="form-input"
+          [class.invalid]="phoneError()"
+          placeholder="3001234567"
+          maxlength="10"
+          (blur)="markPhoneTouched()"
+          (input)="subscriptionForm.controls.phone.markAsDirty()"
+        />
+        <span class="helper-text">Ingrese su número de teléfono para recibir notificaciones</span>
+        @if (phoneError()) {
+          <span class="error-text">{{ phoneError() }}</span>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="form-actions">
+    <app-button 
+      type="button" 
+      variant="primary" 
+      (clicked)="onCancel.emit()"
+      [fullWidth]="true"
+    >
+      Cancelar
+    </app-button>
+    <app-button 
+      type="submit"
+      variant="primary"
+      [fullWidth]="true"
+      [disabled]="!isFormValid()"
+    >
+      Confirmar suscripción
+    </app-button>
+  </div>
+</form>

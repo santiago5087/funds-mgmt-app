@@ -1,0 +1,96 @@
+@use 'variables' as *;
+
+.subscription-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 500px;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: $text-primary;
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-input {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 3px rgba($primary, 0.1);
+  }
+
+  &:disabled {
+    background-color: rgba(0, 0, 0, 0.05);
+    cursor: not-allowed;
+  }
+
+  &.invalid {
+    border-color: $error;
+    background-color: rgba($error, 0.02);
+
+    &:focus {
+      border-color: $error;
+      box-shadow: 0 0 0 3px rgba($error, 0.1);
+    }
+  }
+}
+
+.helper-text {
+  font-size: 0.75rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.error-text {
+  font-size: 0.75rem;
+  color: $error;
+  font-weight: 500;
+}
+
+.notification-field {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, $opacity-light);
+}
+
+.radio-group {
+  display: flex;
+  gap: 24px;
+}
+
+.form-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+@media (max-width: 600px) {
+  .form-actions {
+    grid-template-columns: 1fr;
+  }
+}
