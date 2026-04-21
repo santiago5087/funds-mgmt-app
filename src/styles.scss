@@ -45,3 +45,43 @@ html, body {
   height: 100%;
 }
 /* You can add global styles to this file, and also import other style files */
+
+/* Toast Notifications Styles */
+.custom-toast {
+  .mat-mdc-snack-bar-container {
+    --mdc-snackbar-container-color: transparent !important;
+    --mat-snack-bar-button-color: #ffffff !important;
+    margin: 8px !important;
+    padding: 0 !important;
+  }
+
+  .mdc-snackbar__surface {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  .mat-mdc-snack-bar-label {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
