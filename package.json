@@ -8,8 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:coverage": "ng test --coverage --watch=false",
-    "api": "json-server db.json --port 3000",
-    "api:prod": "pm2 start ecosystem.config.cjs --env production"
+    "api": "json-server db.json --port 3000"
   },
   "private": true,
   "packageManager": "npm@11.8.0",

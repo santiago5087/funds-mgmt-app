@@ -9,11 +9,6 @@
 # Node
 /node_modules
 
-# PM2 logs
-/logs
-npm-debug.log
-yarn-error.log
-
 # IDEs and editors
 .idea/
 .project
