@@ -1,5 +1,10 @@
 import { Routes } from '@angular/router';
-import { FundsPageComponent, HomePageComponent } from '@presentation/pages';
+import { 
+  FundsPageComponent,
+  HomePageComponent,
+  SubscriptionsPageComponent
+} from '@presentation/pages';
+import {  } from '@presentation/pages/subscriptions/subscriptions-page.component';
 
 export const routes: Routes = [
   {
@@ -9,6 +14,10 @@ export const routes: Routes = [
   {
     path: 'funds',
     component: FundsPageComponent,
+  },
+  {
+    path: 'subscriptions',
+    component: SubscriptionsPageComponent,
   },
   {
     path: '**',
