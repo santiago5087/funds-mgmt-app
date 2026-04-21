@@ -1,5 +1,4 @@
 import { render, screen, waitFor } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
 import { SubscriptionFormComponent } from './subscription-form.component';
 import { describe, it, expect, vi } from 'vitest';
 

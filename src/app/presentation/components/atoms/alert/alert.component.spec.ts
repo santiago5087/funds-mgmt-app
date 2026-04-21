@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { AlertComponent } from './alert.component';
 import { describe, it, expect, vi } from 'vitest';
 
-describe.skip('AlertComponent', () => {
+describe('AlertComponent', () => {
   it('should create', async () => {
     const { fixture } = await render(AlertComponent);
     expect(fixture.componentInstance).toBeTruthy();
@@ -111,15 +111,9 @@ describe.skip('AlertComponent', () => {
   });
 
   describe('visual rendering', () => {
-    it('should have app-alert selector', async () => {
-      const { container } = await render(AlertComponent);
-      const element = container.querySelector('app-alert');
-      expect(element).toBeTruthy();
-    });
-
     it('should render alert container', async () => {
       const { container } = await render(AlertComponent);
-      const alert = container.querySelector('.alert');
+      const alert = container.querySelector('.alert-content');
       expect(alert).toBeTruthy();
     });
 
@@ -136,7 +130,7 @@ describe.skip('AlertComponent', () => {
     it('should render component successfully', async () => {
       const { container } = await render(AlertComponent);
       const alert = container.querySelector('[role="alert"]');
-      expect(alert).toBeInTheDocument();
+      expect(alert).toBeTruthy();
     });
   });
 

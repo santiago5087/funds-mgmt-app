@@ -1,7 +1,7 @@
 import { render } from '@testing-library/angular';
 import { HomePageComponent } from './home-page.component';
 import { Store } from '@ngxs/store';
-import { of } from 'rxjs';
+import { of, Observable } from 'rxjs';
 import { describe, it, expect, vi, beforeAll } from 'vitest';
 import { registerLocaleData } from '@angular/common';
 import localeEsCO from '@angular/common/locales/es-CO';
@@ -11,31 +11,38 @@ beforeAll(() => {
   registerLocaleData(localeEsCO, 'es-CO');
 });
 
-// Mock Store con valores apropiados para cada selector
+// Mock Store que proporciona observables con valores por defecto
 class MockStore {
-  select = vi.fn((selector: any) => {
-    // Convertir el selector a string para verificar
-    const selectorStr = String(selector);
-    
-    // Verificar qué selector es basándose en la cadena de texto
-    if (selectorStr.includes('balance')) {
-      return of(500000); // balance inicial
-    } else if (selectorStr.includes('subscription')) {
-      return of([]); // array de subscriptions
-    } else if (selectorStr.includes('transaction')) {
-      return of([]); // array de transactions
-    }
-    
-    // Default: retornar array vacío para ser seguro
-    return of([]);
-  });
+  private selectCount = 0;
+  private selectorReturnMap = [
+    of(500000),        // balance
+    of([]),            // subscriptions
+    of([]),            // transactions
+  ];
+
+  select(selector: any): Observable<any> {
+    // El primer select es balance, segundo es subscriptions, tercero es transactions
+    const result = this.selectorReturnMap[this.selectCount] || of([]);
+    this.selectCount++;
+    return result;
+  }
+
+  dispatch(action: any): void {
+    // No hacer nada en el mock
+  }
 }
 
-describe.skip('HomePageComponent', () => {
+describe('HomePageComponent', () => {
   const renderComponent = async () => {
+    // Crear una nueva instancia de MockStore para cada render
+    const mockStore = new MockStore();
+    
     return render(HomePageComponent, {
       providers: [
-        { provide: Store, useClass: MockStore }
+        { 
+          provide: Store, 
+          useValue: mockStore
+        }
       ]
     });
   };

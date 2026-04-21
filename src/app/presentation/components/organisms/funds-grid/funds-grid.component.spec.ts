@@ -1,5 +1,4 @@
 import { render, screen } from '@testing-library/angular';
-import userEvent from '@testing-library/user-event';
 import { FundsGridComponent } from './funds-grid.component';
 import { InvestmentFund } from '../../../../domain/models';
 import { describe, it, expect, vi } from 'vitest';

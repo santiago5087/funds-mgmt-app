@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/angular';
 import { BadgeComponent, BadgeVariant } from './badge.component';
 import { describe, it, expect } from 'vitest';
 
-describe.skip('BadgeComponent', () => {
+describe('BadgeComponent', () => {
   it('should create', async () => {
     const { fixture } = await render(BadgeComponent);
     expect(fixture.componentInstance).toBeTruthy();
@@ -48,15 +48,14 @@ describe.skip('BadgeComponent', () => {
 
   it('should accept any valid BadgeVariant', async () => {
     const variants: BadgeVariant[] = ['info', 'success', 'warning', 'danger'];
-    
+
+    const { fixture, rerender } = await render(BadgeComponent, {
+      componentInputs: { variant: 'info' }
+    });
+
     for (const variant of variants) {
-      const { fixture, rerender } = await render(BadgeComponent, {
-        componentInputs: { variant }
-      });
+      await rerender({ componentInputs: { variant } });
       expect(fixture.componentInstance.variant()).toBe(variant);
-      
-      // Clean up between iterations
-      fixture.destroy();
     }
   });
 
@@ -66,6 +65,6 @@ describe.skip('BadgeComponent', () => {
     });
     
     const badge = container.querySelector('mat-chip');
-    expect(badge).toBeInTheDocument();
+    expect(badge).toBeTruthy();
   });
 });
