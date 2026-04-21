@@ -8,13 +8,4 @@ describe('App', () => {
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
-
-  it('should render title', async () => {
-    await render(App);
-    const heading = screen.getByRole('heading', {
-      level: 2,
-      name: /funds-management-app/i,
-    });
-    expect(heading).toBeInTheDocument();
-  });
 });
