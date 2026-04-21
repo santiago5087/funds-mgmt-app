@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+     "test": "ng test",
+     "api": "json-server db.json --port 3000",
+     "api:prod": "pm2 start ecosystem.config.cjs --env production"
   },
   "private": true,
   "packageManager": "npm@11.8.0",
@@ -32,6 +34,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/user-event": "^14.6.1",
     "jsdom": "^28.0.0",
+    "json-server": "^1.0.0-beta.15",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
