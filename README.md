@@ -13,19 +13,37 @@ Aplicacion web para la gestion de fondos de inversion, suscripciones y cancelaci
 
 ## Tabla de Contenido
 
-1. [Despliegue en AWS](#despliegue-en-aws)
-2. [Como ejecutar localmente](#como-ejecutar-localmente)
-3. [Resumen del producto](#resumen-del-producto)
-4. [Caracteristicas clave](#caracteristicas-clave)
-5. [Arquitectura limpia](#arquitectura-limpia)
-6. [Principios SOLID](#principios-solid)
-7. [Atomic Design](#atomic-design)
-8. [State management](#state-management)
-9. [Clean code y buenas practicas](#clean-code-y-buenas-practicas)
-10. [Stack tecnologico](#stack-tecnologico)
-11. [Scripts](#scripts)
-12. [Rutas principales](#rutas-principales)
-13. [Estructura del proyecto](#estructura-del-proyecto)
+- [Funds Management App](#funds-management-app)
+  - [Tabla de Contenido](#tabla-de-contenido)
+  - [Despliegue en AWS](#despliegue-en-aws)
+    - [URL oficial del dominio](#url-oficial-del-dominio)
+  - [https://d2msvhrypyqqi2.cloudfront.net/](#httpsd2msvhrypyqqi2cloudfrontnet)
+  - [Como ejecutar localmente](#como-ejecutar-localmente)
+    - [Prerrequisitos](#prerrequisitos)
+    - [Paso 1 - Instalar dependencias](#paso-1---instalar-dependencias)
+    - [Paso 2 - Levantar API mock con json-server](#paso-2---levantar-api-mock-con-json-server)
+    - [Paso 3 - Levantar la aplicacion Angular](#paso-3---levantar-la-aplicacion-angular)
+  - [Resumen del producto](#resumen-del-producto)
+  - [Caracteristicas clave](#caracteristicas-clave)
+  - [Arquitectura limpia](#arquitectura-limpia)
+    - [Objetivo de la arquitectura](#objetivo-de-la-arquitectura)
+    - [Capas del proyecto](#capas-del-proyecto)
+    - [Regla de dependencia](#regla-de-dependencia)
+    - [Flujo simplificado](#flujo-simplificado)
+    - [Beneficios aplicados en esta app](#beneficios-aplicados-en-esta-app)
+  - [Principios SOLID](#principios-solid)
+  - [Atomic Design](#atomic-design)
+  - [State management](#state-management)
+    - [Estado central](#estado-central)
+    - [Acciones principales](#acciones-principales)
+    - [Ventajas](#ventajas)
+  - [Clean code y buenas practicas](#clean-code-y-buenas-practicas)
+  - [Stack tecnologico](#stack-tecnologico)
+  - [Scripts](#scripts)
+  - [Rutas principales](#rutas-principales)
+  - [Estructura del proyecto](#estructura-del-proyecto)
+    - [Como interpretar esta estructura](#como-interpretar-esta-estructura)
+    - [Beneficio de este layout](#beneficio-de-este-layout)
 
 ## Despliegue en AWS
 
@@ -36,9 +54,11 @@ La aplicacion esta desplegada en AWS utilizando:
 
 ### URL oficial del dominio
 
-[![Abrir aplicacion en CloudFront](https://img.shields.io/badge/Abrir%20aplicacion%20en%20CloudFront-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white)](https://d2msvhrypyqqi2.cloudfront.net/)
+<a href="https://d2msvhrypyqqi2.cloudfront.net/" target="_blank" rel="noopener noreferrer">
+  <img src="https://img.shields.io/badge/Abrir%20aplicacion%20en%20CloudFront-FF9900?style=for-the-badge&logo=amazonaws&logoColor=white" alt="Abrir aplicacion en CloudFront" />
+</a>
 
-## https://d2msvhrypyqqi2.cloudfront.net/
+## <a href="https://d2msvhrypyqqi2.cloudfront.net/" target="_blank" rel="noopener noreferrer">https://d2msvhrypyqqi2.cloudfront.net/</a>
 
 Si quieres validar rapidamente el despliegue, abre la URL y verifica navegacion por las rutas principales (`/`, `/funds`, `/subscriptions`, `/transactions`).
 
